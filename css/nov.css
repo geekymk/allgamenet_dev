@@ -15,7 +15,7 @@ body{margin: 0;padding: 0;background-color: #eee}
 .shortcutbar-shortcut-btn-svg{fill: #666}
 .shortcutbar-shortcut:last-child > .shortcutbar-shortcut-btn{padding: 1px 0 1px 15px}
 
-.copyright{user-select: none;color: #888;font-size: x-small;text-align: center;margin-top: 50px}
+.copyright{user-select: none;color: #888;font-size: x-small;text-align: center;padding: 50px 0}
 
 .menubar{width: 100%;height: 49px;position: fixed;bottom: 0;border-top: 1px solid #d3d3d3;background-color: #fff;padding-bottom: env(safe-area-inset-bottom);user-select: none}
 .menubar-btn{float: left;width: 50%;text-align: center;-webkit-tap-highlight-color: transparent}
