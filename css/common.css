@@ -1,0 +1,10 @@
+@charset "UTF-8";
+*{font-family: AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif}
+body{margin: 0;padding: 0}
+header{background-color: #428fd5;height: 55px}
+
+
+
+.mw1200{max-width: 1200px}
+.ma{margin: auto}
+.tc{text-align: center}
