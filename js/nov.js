@@ -1,6 +1,42 @@
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
+ajaxCall('http://cmk.iptime.org:11000/notice', '', function(data){
+	var html = '';
+	
+	var con = JSON.parse(data);
+	for(var i=0; i<con.length; i++) {
+		html += '<div class="screamwrap-row">';
+		html += '<div class="screamwrap-row-title">'+con[i].title_nm+'</div>';
+		html += '<div class="screamwrap-row-content">'+con[i].content+'</div>';
+		html += '</div>';
+	}
+	$('#view_board').html(html);
+});
+function ajaxCall(){
+	var req = null;
+	var args = this.ajaxCall.arguments;
+	if(window.XMLHttpRequest) {
+		req = new XMLHttpRequest();		
+	} else if (window.ActiveXObject) {
+		req = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if(req) {
+		req.open('GET', args[0], true);		// request open
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+		req.send(args[1]);
+		req.onreadystatechange =  function() {	
+			if(req.readyState == 4) {					
+				if(req.status == 200) {
+					args[2](req.responseText, args[3], args[4]);
+				}
+			}
+		};
+		
+	} else {
+		alert("request 실패");
+	}	
+}
 $('.menubar-btn').on('click', function(){
 	removeAllSelectMenu();
 	$(this).find('.menubar-btn-text,.menubar-btn-icon-svg').addClass('select');
