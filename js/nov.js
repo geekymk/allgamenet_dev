@@ -1,7 +1,7 @@
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
-ajaxCall('http://cmk.iptime.org:11000/notice', '', function(data){
+ajaxCall('https://cmk.iptime.org/notice', '', function(data){
 	var html = '';
 	
 	var con = JSON.parse(data);
