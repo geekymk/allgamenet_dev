@@ -1,7 +1,7 @@
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
-ajaxCall('http://cmk.iptime.org/video?idx=0&limit=5&ca=ABCD', '', function(data){
+ajaxCall('https://cmk.iptime.org/video?idx=0&limit=5&ca=ABCD', '', function(data){
 	var html = '';
 	var con = JSON.parse(data);
 	var list = con.list;
