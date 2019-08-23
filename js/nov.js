@@ -1,14 +1,14 @@
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
-ajaxCall('http://cmk.iptime.org:11000/notice', '', function(data){
+ajaxCall('http://cmk.iptime.org/video?idx=0&limit=5&ca=ABCD', '', function(data){
 	var html = '';
-	
 	var con = JSON.parse(data);
-	for(var i=0; i<con.length; i++) {
+	var list = con.list;
+	for(var i=0; i<con.size; i++) {
 		html += '<div class="screamwrap-row">';
-		html += '<div class="screamwrap-row-title">'+con[i].title_nm+'</div>';
-		html += '<div class="screamwrap-row-content">'+con[i].content+'</div>';
+		html += '<div class="screamwrap-row-title">'+list[i].id+'</div>';
+		html += '<div class="screamwrap-row-content">'+list[i].writer_nm+'</div>';
 		html += '</div>';
 	}
 	$('#view_board').html(html);
