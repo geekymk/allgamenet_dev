@@ -1,4 +1,3 @@
-import $ from "./jquery.min";
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
