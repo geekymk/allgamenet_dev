@@ -1,6 +1,24 @@
+import $ from "./jquery.min";
 //최초 호출시
 //메뉴 action
 // selectMenu('home');
+var nov = {};
+nov.mainOpen = function() {
+	$('#main').show();
+};
+nov.mainClose = function() {
+	$('#main').hide();
+};
+nov.popupOpen = function() {
+	console.log(11);
+	nov.mainClose();
+	$('#video-popup').show();
+};
+nov.popupClose = function() {
+	$('#video-popup').hide();
+};
+var postbtn = document.getElementById('postbtn');
+postbtn.addEventListener('click', nov.popupOpen, false);	
 ajaxCall('https://cmk.iptime.org/video?idx=0&limit=5&ca=ABCD', '', function(data){
 	var html = '';
 	var con = JSON.parse(data);
@@ -37,6 +55,7 @@ function ajaxCall(){
 		alert("request 실패");
 	}	
 }
+/*
 $('.menubar-btn').on('click', function(){
 	removeAllSelectMenu();
 	$(this).find('.menubar-btn-text,.menubar-btn-icon-svg').addClass('select');
@@ -45,6 +64,7 @@ $('.menubar-btn').on('click', function(){
 	//앞단만 존재함
 	// history.pushState(null, null, menu);
 });
+*/
 function selectMenu(menu) {
 	hidePopup();
 	removeAllSelectMenu();
@@ -55,12 +75,14 @@ function removeAllSelectMenu() {
 	$('.menubar-btn-text,.menubar-btn-icon-svg').removeClass('select');
 }
 //숏컷 action
+/*
 $('.shortcutbar-shortcut-btn').on('click',function(){
 	ajax('/'+this.dataset.menu, function(data){
 		innerHTML(data, 'popup-content')
 		showPopup();
 	});
 });
+*/
 //팝업
 function showPopup() {
 	$('#popup').show('slide',{direction:'down'});

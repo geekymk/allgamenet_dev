@@ -67,3 +67,6 @@ body{margin: 0;padding: 0;background-color: #eee}
 .screamwrap-row:active,.screamwrap-row:hover{background-color:#ffeaea;cursor: pointer} 
 .screamwrap-row-title{color: #444;font-size: medium;font-weight: bold;margin-bottom: 5px}
 .screamwrap-row-content{color: #999;font-size: x-small;line-height: 150%}
+
+
+#video-popup{display: none}
