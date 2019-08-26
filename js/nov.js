@@ -2,6 +2,7 @@
 //메뉴 action
 // selectMenu('home');
 var nov = {};
+nov.server = 'https://cmk.iptime.org';
 nov.mainOpen = function() {
 	$('#main').show();
 };
@@ -9,16 +10,18 @@ nov.mainClose = function() {
 	$('#main').hide();
 };
 nov.popupOpen = function() {
-	console.log(11);
 	nov.mainClose();
 	$('#video-popup').show();
 };
 nov.popupClose = function() {
+	nov.mainOpen();
 	$('#video-popup').hide();
 };
 var postbtn = document.getElementById('postbtn');
 postbtn.addEventListener('click', nov.popupOpen, false);	
-ajaxCall('https://cmk.iptime.org/video?idx=0&limit=5&ca=ABCD', '', function(data){
+var closebtn = document.getElementById('add-video-close-btn');
+closebtn.addEventListener('click', nov.popupClose, false);
+ajaxCall(nov.server + '/video?idx=0&limit=5&ca=ABCD', '', function(data){
 	var html = '';
 	var con = JSON.parse(data);
 	var list = con.list;
