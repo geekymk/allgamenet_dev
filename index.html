@@ -1,43 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script src='js/routing.js' defer="defer"></script>
 <title>올게임넷</title>
 <meta charset="utf-8">
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
 <link rel="stylesheet" type="text/css" href="css/nov.css">
-<script>
-// Single Page Apps for GitHub Pages
-// https://github.com/rafrex/spa-github-pages
-// Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-// ----------------------------------------------------------------------
-// This script checks to see if a redirect is present in the query string
-// and converts it back into the correct url and adds it to the
-// browser's history using window.history.replaceState(...),
-// which won't cause the browser to attempt to load the new url.
-// When the single page app is loaded further down in this file,
-// the correct url will be waiting in the browser's history for
-// the single page app to route accordingly.
-(function (l) {
-	if (l.search) {
-	var q = {};
-	l.search.slice(1).split('&').forEach(function (v) {
-		var a = v.split('=');
-		q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-	});
-	if (q.p !== undefined) {
-		window.history.replaceState(null, null,
-		l.pathname.slice(0, -1) + (q.p || '') +
-		(q.q ? ('?' + q.q) : '') +
-		l.hash
-		);
-	}
-	}
-}(window.location))
-</script>
-<script src='js/jquery.min.js' defer="defer"></script>
-<script src='js/jquery-ui.min.js' defer="defer"></script>
-<script src='js/nov.js' defer="defer"></script>
 </head>
 <body>
 <div id="main">
@@ -70,8 +39,7 @@
 			</button>
 		</div> -->
 	</header>
-	<section id="view_board" class="screamwrap">
-	</section>
+	<section id="view_board" class="screamwrap"></section>
 	<!-- 홈 -->
 	<!-- <article id="home" class="menuwrap" style="display: none;"></article> -->
 	<!-- 인기 -->
@@ -141,5 +109,8 @@
 		</div>
 	</header>
 </div>
+<script src='js/jquery.min.js' defer="defer"></script>
+<script src='js/jquery-ui.min.js' defer="defer"></script>
+<script src='js/nov.js' defer="defer"></script>
 </body>
 </html>	

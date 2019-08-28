@@ -1,62 +1,78 @@
-//최초 호출시
-//메뉴 action
-// selectMenu('home');
-var nov = {};
-nov.server = 'https://cmk.iptime.org';
-nov.mainOpen = function() {
-	$('#main').show();
-};
-nov.mainClose = function() {
-	$('#main').hide();
-};
-nov.popupOpen = function() {
-	nov.mainClose();
-	$('#video-popup').show();
-};
-nov.popupClose = function() {
-	nov.mainOpen();
-	$('#video-popup').hide();
-};
-var postbtn = document.getElementById('postbtn');
-postbtn.addEventListener('click', nov.popupOpen, false);	
-var closebtn = document.getElementById('add-video-close-btn');
-closebtn.addEventListener('click', nov.popupClose, false);
-ajaxCall(nov.server + '/video?idx=0&limit=5&ca=ABCD', '', function(data){
-	var html = '';
-	var con = JSON.parse(data);
-	var list = con.list;
-	for(var i=0; i<con.size; i++) {
-		html += '<div class="screamwrap-row">';
-		html += '<div class="screamwrap-row-title">'+list[i].id+'</div>';
-		html += '<div class="screamwrap-row-content">'+list[i].writer_nm+'</div>';
-		html += '</div>';
+/**
+ * 전역 공통
+ * gl: 전역, lo: 멤버
+ */
+var com = {
+	def: {
+		header: {
+			json: "application/json; charset=utf-8"
+		}
+	},
+	gl: {
+		apiurl: 'https://cmk.iptime.org'
 	}
-	$('#view_board').html(html);
-});
-function ajaxCall(){
-	var req = null;
-	var args = this.ajaxCall.arguments;
-	if(window.XMLHttpRequest) {
-		req = new XMLHttpRequest();		
-	} else if (window.ActiveXObject) {
-		req = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	if(req) {
-		req.open('GET', args[0], true);		// request open
-		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-		req.send(args[1]);
-		req.onreadystatechange =  function() {	
-			if(req.readyState == 4) {					
-				if(req.status == 200) {
-					args[2](req.responseText, args[3], args[4]);
-				}
-			}
-		};
-		
-	} else {
-		alert("request 실패");
-	}	
 }
+var nov = {
+	ajax: {
+		getRequest: function() {
+			return (window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Msxml2.XMLHTTP")); 
+		}
+	},
+	video: {
+		lo: {
+			main: document.getElementById('main'),
+			uri: {
+				list: com.gl.apiurl + '/video'
+			}
+		},
+		showMain: function(isEmpty) {
+			if(isEmpty) {
+				$(nov.video.lo.main).empty();
+			}
+			$(nov.video.lo.main).show();
+		},
+		hideMain: function(isEmpty) {
+			if(isEmpty) {
+				$(nov.video.lo.main).empty();
+			}
+			$(nov.video.lo.main).hide();	
+		},
+		getList: function(idx, limit, ca) {
+			var req = nov.ajax.getRequest();
+			req.open('GET', nov.video.lo.uri.list+'?idx='+idx+'&limit='+limit+'&ca='+ca);
+			req.setRequestHeader("Content-Type", com.def.header.json);
+			req.send();
+			req.onreadystatechange = function() {
+				if(req.readyState == 4 && req.status == 200) {					
+					var content = "";
+					var data = JSON.parse(req.response);
+					var size = data.size;
+					for(var i=0; i<size; i++) {
+						var row = data.list[i];
+						content += '<div class="screamwrap-row">';
+						content += '<div class="screamwrap-row-title">'+row.id+'</div>';
+						content += '<div class="screamwrap-row-content">'+row.writer_nm+'</div>';
+						content += '</div>';
+					}
+					$('#view_board').html(content);
+				}
+			};
+		}
+	}
+};
+nov.video.getList(0, 10, 'ABCD');
+// nov.ajax(nov.gl.apiurl + '/video?idx=0&limit=5&ca=ABCD', '', function(data){
+// 	var html = '';
+// 	var con = JSON.parse(data);
+// 	var list = con.list;
+// 	for(var i=0; i<con.size; i++) {
+// 		html += '<div class="screamwrap-row">';
+// 		html += '<div class="screamwrap-row-title">'+list[i].id+'</div>';
+// 		html += '<div class="screamwrap-row-content">'+list[i].writer_nm+'</div>';
+// 		html += '</div>';
+// 	}
+// 	$('#view_board').html(html);
+// });
 /*
 $('.menubar-btn').on('click', function(){
 	removeAllSelectMenu();
