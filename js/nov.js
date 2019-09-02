@@ -12,7 +12,11 @@ var nov = {
 	},
 	event: {
 		showAddingPopup: function() {
-			var content = '';
+			$('#videoList').hide('slide',{},100,function(){
+				$('#videoAdding').show('slide', {}, 300);
+			});
+			
+			// var content = '';
 
 			// $('#content').html();
 		}
@@ -37,10 +41,11 @@ var nov = {
 					}
 					var main = document.getElementById('videoList');
 					$(main).html(content);
-					$(main).show('slide');
+					$(main).show('slide', {}, 300);
 				}
 			};
 		}
 	}
 };
 nov.video.getList(0, 5, 'ABCD');
+document.getElementById('addvideo').addEventListener('click', nov.event.showAddingPopup);
