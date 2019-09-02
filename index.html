@@ -13,19 +13,47 @@
 </head>
 <body>
 <header class="shortcutbar">
-	<div class="shortcutbar-logo">
-		<img src="img/logo.svg" width="30" height="30" class="shortcutbar-logo-img">
-		<span class="shortcutbar-logo-text">올게임넷</span>
-	</div>
-	<div class="shortcutbar-shortcut">
-		<button id="addvideo" class="shortcutbar-shortcut-btn">
-			<svg width="20" height="20">
-				<path class="shortcutbar-shortcut-btn-svg" d="M11.125 19v-7.875H19v-2.25h-7.875V1h-2.25v7.875H1v2.25h7.875V19z"/>
-			</svg>
-		</button>
+	<div class="mw1000">
+		<div class="shortcutbar-logo">
+			<img src="img/logo.svg" width="30" height="30" class="shortcutbar-logo-img">
+			<span class="shortcutbar-logo-text">올게임넷</span>
+		</div>
+		<div class="shortcutbar-shortcut">
+			<button id="addvideo" class="shortcutbar-shortcut-btn">
+				<svg width="20" height="20">
+					<path class="shortcutbar-shortcut-btn-svg" d="M11.125 19v-7.875H19v-2.25h-7.875V1h-2.25v7.875H1v2.25h7.875V19z"/>
+				</svg>
+			</button>
+		</div>
 	</div>
 </header>
-<section id="content"></section>
+<section id="videoList" class="content"></section>
+<section id="videoAdding" class="content">
+	<!-- 카테고리 -->
+	<div>
+		<span>LOL</span><span>배그</span><span>유머</span>
+	</div>
+	<!-- URL -->
+	<div>
+		<label>동영상 주소</label>
+		<input type="text" />
+	</div>
+	<!-- 제목 -->
+	<div>
+		<label>제목</label>
+		<input type="text" />
+	</div>
+	<!-- 이름 -->
+	<div>
+		<label>이름</label>
+		<input type="text" />
+	</div>
+	<!-- 비밀번호 -->
+	<div>
+		<label>URL</label>
+		<input type="password" />
+	</div>
+</section>
 <footer id="copyright">© 올게임넷</footer>
 </body>
 </html>	

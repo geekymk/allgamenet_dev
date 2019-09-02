@@ -15,11 +15,12 @@ body{background-color: #eee}
 .screamwrap-row:active,.screamwrap-row:hover{background-color:#ffeaea;cursor: pointer} 
 .screamwrap-row-title{color: #444;font-size: medium;font-weight: bold;margin-bottom: 5px}
 .screamwrap-row-content{color: #999;font-size: x-small;line-height: 150%}
-#content{margin: auto;padding: 50px 10px 0 10px;}
+.mw1000{margin: auto;max-width: 1000px}
+.content{margin: auto;padding: 50px 10px 0 10px;display: none}
 #copyright{user-select: none;color: #888;font-size: x-small;text-align: center;padding: 50px 0}
 @media screen and (min-width: 1000px) {
     .shortcutbar-logo-text{font-size: medium}
-    #content{max-width: 1000px}
+    .content{max-width: 1000px;display: none}
     #copyright{font-size: small}
 }
 

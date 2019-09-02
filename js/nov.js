@@ -10,6 +10,13 @@ var nov = {
 			return (window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Msxml2.XMLHTTP")); 
 		}
 	},
+	event: {
+		showAddingPopup: function() {
+			var content = '';
+
+			// $('#content').html();
+		}
+	},
 	video: {
 		getList: function(idx, limit, ca) {
 			var req = nov.ajax.getRequest();
@@ -28,8 +35,9 @@ var nov = {
 						content += '<div class="screamwrap-row-content">'+row.writer_nm+'</div>';
 						content += '</div>';
 					}
-					var main = document.getElementById('content');
+					var main = document.getElementById('videoList');
 					$(main).html(content);
+					$(main).show('slide');
 				}
 			};
 		}
