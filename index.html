@@ -13,17 +13,17 @@
 </head>
 <body>
 <header class="shortcutbar">
-	<div class="mw1000">
-		<div class="shortcutbar-logo" id="homeLogo">
+	<div class="mw1000" style="text-align: center">
+		<div class="shortcutbar-logo" id="homeLogo" title="올게임넷">
 			<img src="img/logo.svg" width="30" height="30" class="shortcutbar-logo-img">
 			<span class="shortcutbar-logo-text">올게임넷</span>
 		</div>
-		<button class="shortcutbar-btn" id="backList">
+		<button class="shortcutbar-btn" id="backList" title="뒤로가기">
 			<svg width="20" height="20">
-				<path class="shortcutbar-btn-svg" d="M11.125 19v-7.875H19v-2.25h-7.875V1h-2.25v7.875H1v2.25h7.875V19z"/>
+				<path class="shortcutbar-btn-svg" d="M15.21 4.2l-2.316-2.316L4.79 10l8.106 8.106L15.21 15.8 9.42 10z"/>
 			</svg>
 		</button>
-		<button class="shortcutbar-btn" id="addvideo">
+		<button class="shortcutbar-btn" id="addvideo" title="새로운 영상 등록">
 			<svg width="20" height="20">
 				<path class="shortcutbar-btn-svg" d="M11.125 19v-7.875H19v-2.25h-7.875V1h-2.25v7.875H1v2.25h7.875V19z"/>
 			</svg>
@@ -32,31 +32,33 @@
 </header>
 <section id="videoList" class="content"></section>
 <section id="videoAdding" class="content">
-	<div style="margin-top: 15px;border: 1px solid #aaa;border-radius: 5px;height: 120px;background-color: #fff;padding: 10px;-webkit-tap-highlight-color:rgba(255, 234, 234, 1)">
+	<div class="video-add-form">
+		<!-- <div style="margin-top: 20px;">
+			<span style="font-size: x-large;color: #353535;font-weight: bold">새로운 링크 등록</span>
+		</div> -->
 		<!-- 카테고리 -->
-		<div>
+		<!-- <div style="margin-top: 15px;">
 			<span>LOL</span><span>배그</span><span>유머</span>
-		</div>
+		</div> -->
 		<!-- URL -->
-		<div>
-			<div>동영상 주소</div>
-			<label></label>
-			<input type="text" />
+		<div class="form-title">링크</div>
+		<div class="form-div">
+			<input type="url" class="form-input"/>
 		</div>
 		<!-- 제목 -->
-		<div>
-			<label>제목</label>
-			<input type="text" />
+		<div class="form-title">제목</div>
+		<div class="form-div">
+			<input type="" class="form-input"/>
 		</div>
 		<!-- 이름 -->
-		<div>
-			<label>이름</label>
-			<input type="text" />
+		<div class="form-title">이름</div>
+		<div class="form-div">
+			<input type="text" class="form-input"/>
 		</div>
 		<!-- 비밀번호 -->
-		<div>
-			<label>URL</label>
-			<input type="password" />
+		<div class="form-title">암호</div>
+		<div class="form-div">
+			<input type="password" class="form-input"/>
 		</div>
 	</div>
 </section>

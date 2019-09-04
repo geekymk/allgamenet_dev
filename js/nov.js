@@ -12,22 +12,22 @@ var nov = {
 	},
 	event: {
 		showAddingPopup: function() {
-			$('#homeLogo').hide('slide',{},100,function(){
+			$('#homeLogo').hide('slide',{direction: 'down'},100,function(){
 				$('#backList').show('slide', {}, 300);
 			});
-			$('#videoList').hide('slide',{},100,function(){
-				$('#videoAdding').show('slide', {}, 300);
+			$('#videoList').hide('slide',{direction: 'right'},250,function(){
+				$('#videoAdding').show('slide',{}, 250);
 			});
 		},
 		goHome: function() {
 			window.top.location.href = '/';
 		},
 		backList: function() {
-			$('#backList').hide('slide',{},100,function(){
+			$('#backList').hide('slide',{direction: 'down'},100,function(){
 				$('#homeLogo').show('slide', {}, 300);
 			});
-			$('#videoAdding').hide('slide',{},100,function(){
-				$('#videoList').show('slide', {}, 300);
+			$('#videoAdding').hide('slide',{direction: 'right'},250,function(){
+				$('#videoList').show('slide', {}, 250);
 			});
 		}
 	},
