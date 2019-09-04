@@ -12,13 +12,23 @@ var nov = {
 	},
 	event: {
 		showAddingPopup: function() {
+			$('#homeLogo').hide('slide',{},100,function(){
+				$('#backList').show('slide', {}, 300);
+			});
 			$('#videoList').hide('slide',{},100,function(){
 				$('#videoAdding').show('slide', {}, 300);
 			});
-			
-			// var content = '';
-
-			// $('#content').html();
+		},
+		goHome: function() {
+			window.top.location.href = '/';
+		},
+		backList: function() {
+			$('#backList').hide('slide',{},100,function(){
+				$('#homeLogo').show('slide', {}, 300);
+			});
+			$('#videoAdding').hide('slide',{},100,function(){
+				$('#videoList').show('slide', {}, 300);
+			});
 		}
 	},
 	video: {
@@ -48,4 +58,6 @@ var nov = {
 	}
 };
 nov.video.getList(0, 5, 'ABCD');
+// document.getElementById('homeLogo').addEventListener('click', nov.event.goHome);
 document.getElementById('addvideo').addEventListener('click', nov.event.showAddingPopup);
+document.getElementById('backList').addEventListener('click', nov.event.backList);
