@@ -78,7 +78,7 @@ nov.video = {
 			if(req.readyState == 4) {
 				console.log(req.status);
 				if(req.status == 201) {
-					console.log(req.response);
+					window.top.location.href = '/';
 				}
 			}
 		}
