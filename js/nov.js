@@ -113,7 +113,7 @@ document.getElementById('block-background').addEventListener('click', nov.popup.
 
 document.getElementById('popup').addEventListener('click', nov.popup.blockEvent);
 document.getElementById('popup-btns').addEventListener('click', nov.popup.actionBtn);
-document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
+// document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
 
 // var url = new URL('https://www.youtube.com/watch?v=dT3vovTYjhE');
 // var url = new URL('https://www.youtube.com/watch');
