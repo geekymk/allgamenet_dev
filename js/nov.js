@@ -120,7 +120,7 @@ document.getElementById('popup-btns').addEventListener('click', nov.popup.action
 function scrollEvent() {
 	var scrollpercent = (document.body.scrollTop + document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 	// console.log(scrollpercent);
-	if(1 <= scrollpercent) {
+	if(0.9 <= scrollpercent) {
 		$('#more-space > span').trigger('click');
 		this.event.stopPropagation();
 		window.removeEventListener('scroll', scrollEvent);
