@@ -1,8 +1,6 @@
 var nov = {
 	def: {
-		// url: 'https://cmk.iptime.org',
-		// url: 'http://localhost',
-		url: 'http://10.1.1.5',
+		url: 'https://cmk.iptime.org',
 		hdr: {
 			json: 'application/json',
 			form: 'application/x-www-form-urlencoded'
