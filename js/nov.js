@@ -1,6 +1,8 @@
 var nov = {
 	def: {
-		url: 'https://cmk.iptime.org',
+		// url: 'https://cmk.iptime.org',
+		// url: 'http://localhost',
+		url: 'http://10.1.1.5',
 		hdr: {
 			json: 'application/json',
 			form: 'application/x-www-form-urlencoded'
@@ -82,7 +84,7 @@ nov.video = {
 			}
 		}
 	},
-	getList: function(idx, limit, ca) {
+	getList: function(idx, limit) {
 		var req = new XMLHttpRequest();
 		req.open('GET', nov.def.url+'/video?idx='+idx+'&limit='+limit);
 		req.send();
@@ -98,13 +100,17 @@ nov.video = {
 					content += '<div class="screamwrap-row-content">'+row.writer_nm+'</div>';
 					content += '</div>';
 				}
+				if(10 == size) {
+					window.addEventListener('scroll', scrollEvent);
+					$('#more-space').html('<span title="영상 더 가져오기" style="font-size: large;color: #353535;font-weight: bold;cursor: pointer;position: absolute;left: calc(50% - 30px);" onclick="test('+idx+');"></span>');
+				}
 				var main = document.getElementById('videoList');
-				$(main).html(content);
+				$(main).append(content);
 			}
 		};
 	}
 };
-nov.video.getList(0, 5, 'ABCD');
+nov.video.getList(0, 10);
 // document.getElementById('homeLogo').addEventListener('click', nov.event.goHome);
 document.getElementById('addvideo').addEventListener('click', nov.popup.show);
 document.getElementById('backList').addEventListener('click', nov.event.backList);
@@ -113,6 +119,21 @@ document.getElementById('block-background').addEventListener('click', nov.popup.
 
 document.getElementById('popup').addEventListener('click', nov.popup.blockEvent);
 document.getElementById('popup-btns').addEventListener('click', nov.popup.actionBtn);
+function scrollEvent() {
+	var scrollpercent = (document.body.scrollTop + document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+	// console.log(scrollpercent);
+	if(1 <= scrollpercent) {
+		$('#more-space > span').trigger('click');
+		this.event.stopPropagation();
+		window.removeEventListener('scroll', scrollEvent);
+	}
+}
+function test(tt) {
+	// $("#more-space > span").text("");
+	nov.video.getList((tt + 10), 10);
+	
+}
+window.addEventListener('scroll', scrollEvent);
 // document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
 
 // var url = new URL('https://www.youtube.com/watch?v=dT3vovTYjhE');
