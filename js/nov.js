@@ -1,6 +1,7 @@
 var nov = {
 	def: {
 		url: 'https://cmk.iptime.org',
+		// url: 'http://localhost',
 		hdr: {
 			json: 'application/json',
 			form: 'application/x-www-form-urlencoded'
@@ -67,12 +68,29 @@ nov.video = {
 		var doc = document;
 		var title = doc.getElementById('video-title').value;
 		var url = doc.getElementById('video-link').value;
+		if(!comutil.valid(url)) {
+			alert('링크를 입력해주세요!');
+			return;
+		}
+		if(!comutil.isURL(url)) {
+			alert('잘못된 링크입니다.');
+			return;
+		}
+		var insertURL = new URL(url);
+		var id = insertURL.searchParams.get('v');
+		if(!comutil.valid(id)) {
+			id = (insertURL.pathname).replace('/','');
+		}
+		if(!comutil.valid(id)) {
+			alert('유튜브 링크가 아니거나 잘못된 링크입니다.');
+			return;
+		}
 		var name = doc.getElementById('video-writer-name').value;
 		var pw = doc.getElementById('video-writer-pw').value;
 		var req = new XMLHttpRequest();
 		req.open('POST', nov.def.url+'/video');
 		req.setRequestHeader("Content-Type", nov.def.hdr.form);
-		req.send('title='+title+'&video-url='+url+'&writer-nm='+name+'&writer-pw='+pw);
+		req.send('title='+title+'&video-url='+id+'&writer-nm='+name+'&writer-pw='+pw);
 		req.onreadystatechange = function() {
 			if(req.readyState == 4) {
 				console.log(req.status);
@@ -93,9 +111,9 @@ nov.video = {
 				var size = data.length;
 				for(var i=0; i<size; i++) {
 					var row = data[i];
-					content += '<div class="screamwrap-row">';
-					content += '<div class="screamwrap-row-title">'+row.id+'</div>';
-					content += '<div class="screamwrap-row-content">'+row.writer_nm+'</div>';
+					content += '<div class="screamwrap-row" onclick="window.open(\'https://www.youtube.com/watch?v='+row.video_url+'\')">';
+					content += '<img src="https://i.ytimg.com/vi/'+row.video_url+'/default.jpg" width="120" height="90"/>';
+					content += '<span>'+row.title+'</span>';
 					content += '</div>';
 				}
 				if(10 == size) {
@@ -132,6 +150,20 @@ function test(tt) {
 	
 }
 window.addEventListener('scroll', scrollEvent);
+
+
+comutil = {
+	valid: function(s) {
+		if('' == s || null == s || undefined == s) {
+			return false;
+		}
+		return true;
+	},
+	isURL: function(sURL) {
+		var e = /^http[s]?\:\/\//i;
+		return e.test(sURL);
+	}
+};
 // document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
 
 // var url = new URL('https://www.youtube.com/watch?v=dT3vovTYjhE');
