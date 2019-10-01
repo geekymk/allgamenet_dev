@@ -55,36 +55,60 @@ nov.popup = {
 		}
 	},
 	changeLink: function() {
-		var url = new URL(this.value);
+		// var url = new URL(this.value);
+		// var id = url.searchParams.get('v');
+		// var previewVideo = document.getElementById('preview-video-link');
+		// previewVideo.src = 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg';
+		// previewVideo.width = '320';
+		// previewVideo.height = '180';
+		var urlString = this.value;
+		if(!comutil.valid(urlString)) {
+			return;
+		}
+		if(!comutil.isURL(urlString)) {
+			return;
+		}
+		var url = new URL(urlString);
 		var id = url.searchParams.get('v');
-		var previewVideo = document.getElementById('preview-video-link');
-		previewVideo.src = 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg';
-		previewVideo.width = '320';
-		previewVideo.height = '180';
+		if(!comutil.valid(id)) {
+			id = (url.pathname).replace('/','');
+		}
+		if(!comutil.valid(id)) {
+			return;
+		}
+		nov.video.getInfo(id, function(data) {
+			nov.video.info = data;
+		});
 	}
 };
 nov.video = {
-	add: function() {
-		var doc = document;
-		var title = doc.getElementById('video-title').value;
-		var url = doc.getElementById('video-link').value;
-		if(!comutil.valid(url)) {
-			alert('링크를 입력해주세요!');
-			return;
+	info: null,
+	getInfo: function(id, callback) {
+		var req = new XMLHttpRequest();
+		var callurl = 'https://www.googleapis.com/youtube/v3/videos?';
+		callurl += 'id='+id;
+		callurl += '&key=AIzaSyBjOGx_HuZHAOseQdeIofk65CRpq-XmfC0';
+		callurl += '&part=snippet,contentDetails,statistics,status';
+		req.open('GET',callurl);
+		req.send();
+		req.onreadystatechange = function() {
+			if(req.readyState == 4) {
+				if(req.status == 200) {
+					callback(JSON.parse(req.response));
+				}
+			}
 		}
-		if(!comutil.isURL(url)) {
+	},
+	add: function() {
+		var info = nov.video.info;
+		if(!info) {
 			alert('잘못된 링크입니다.');
 			return;
 		}
-		var insertURL = new URL(url);
-		var id = insertURL.searchParams.get('v');
-		if(!comutil.valid(id)) {
-			id = (insertURL.pathname).replace('/','');
-		}
-		if(!comutil.valid(id)) {
-			alert('유튜브 링크가 아니거나 잘못된 링크입니다.');
-			return;
-		}
+		var item = info.items[0];
+		var id = item.id;
+		var doc = document;
+		var title = item.snippet.title;
 		var name = doc.getElementById('video-writer-name').value;
 		var pw = doc.getElementById('video-writer-pw').value;
 		var req = new XMLHttpRequest();
@@ -164,7 +188,7 @@ comutil = {
 		return e.test(sURL);
 	}
 };
-// document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
+document.getElementById('video-link').addEventListener('change', nov.popup.changeLink);
 
 // var url = new URL('https://www.youtube.com/watch?v=dT3vovTYjhE');
 // var url = new URL('https://www.youtube.com/watch');
